@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Star Wars - Express</title>
+    <!-- Latest compiled and minified CSS & JS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://code.jquery.com/jquery.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+
+</head>
+
+<body>
+
+    <div class="container">
+        <div class="jumbotron">
+            <h1>Star Wars Express</h1>
+            <h3>Create your new Star wars character</h3>
+            <hr>
+        </div>
+        <div class="row">
+
+            <div class="col-lg-12">
+
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">
+                            <strong>new Character info</strong>
+                        </h3>
+                    </div>
+                    <div class="panel-body">
+                        <label for="character-name">Name: </label>
+                        <input type="text" id="character-name" class="form-control">
+                        <label for="character-name">Age: </label>
+                        <input type="text" id="character-role" class="form-control">
+                        <label for="character-name">Role: </label>
+                        <input type="text" id="character-age" class="form-control">
+                        <label for="character-name">Force Points: </label>
+                        <input type="text" id="character-forcePoints" class="form-control">
+                        <br>
+                        <div class="text-right">
+                            <button type="submit" class="btn btn-primary btn-md" id="create-btn">
+                                <span class="fa fa-search"></span> Create Character</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript">
+        $("#create-btn").on("click", function() {
+      var createdCharacter = {
+        name: $("#character-name").val().trim(),
+        routeName: $("#character-name").val().trim().replace(/\s+/g, "").toLowerCase(),
+        role: $("#character-role").val().trim(),
+        age: $("#character-age").val().trim(),
+        forcePoints: $("#character-forcePoints").val().trim()
+          }
+          
+     $.post("/api/characters", createdCharacter).then(function(data){
+        console.log("add.html", data)
+        return JSON.stringify(data)
+     })
+     
+
+      // QUESTION: What does $.get do? What are the parameters it is expecting?
+      
+
+    });
+
+
+    </script>
+</body>
+
+</html>
